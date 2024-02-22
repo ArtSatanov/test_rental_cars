@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { pathBase } from '../../const';
 
 axios.defaults.baseURL = pathBase;
 
