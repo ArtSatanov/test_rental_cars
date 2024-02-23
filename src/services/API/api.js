@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { pathBase } from '../../const';
+import { pathBase, pathCatalog } from 'const';
 
-axios.defaults.baseURL = pathBase;
+axios.defaults.baseURL = pathBase.BASEURL;
 
 //catalog
 
