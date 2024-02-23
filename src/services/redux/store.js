@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
-  persistReducer,
+  // persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -11,7 +11,7 @@ import {
 } from 'redux-persist';
 import { vehiclesReducer } from './slices';
 
-const favPersistCfg = {};
+// const favPersistCfg = {};
 
 export const store = configureStore({
   reducer: {

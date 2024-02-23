@@ -15,7 +15,7 @@ export const CssBaseline = theme => {
         body: {
           width: '100%',
           height: '100%',
-          backgroundColor: theme?.palette.background.default,
+          //  backgroundColor: theme?.palette.background.default,
           backgroundAttachment: 'fixed',
         },
         '#root': {
