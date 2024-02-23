@@ -1,10 +1,10 @@
 import React from 'react';
-import { Routes } from './Routes/Routes';
+import { RoutesComp } from './RoutesComp/RoutesComp';
 
 export const App = () => {
   return (
     <>
-      <Routes />
+      <RoutesComp />
     </>
   );
 };

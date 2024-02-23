@@ -1,10 +1,10 @@
-import { Layout } from 'components/Layout/Layout';
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { routes } from 'const';
 import { Favorites, Home, NotFound } from 'pages';
+import { Layout } from 'components/Layout/Layout';
 
-export const Routes = () => {
+export const RoutesComp = () => {
   return (
     <>
       <Routes>
