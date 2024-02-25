@@ -1,11 +1,11 @@
 const PRIMARY = {
-  text: '#FFFFFF',
+  text: 'rgb(18,20,23)',
   button: '#3470FF',
-  main: '#121417',
+  main: '#FFFFFF',
 };
 
 const SECONDARY = {
-  text: '#D6E4FF',
+  text: 'rgb(18,20,23,0.5)',
   button: '#0B44CD',
   main: '#121417',
 };
