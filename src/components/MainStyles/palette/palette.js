@@ -22,11 +22,9 @@ const WARNING = {
   main: '#121417',
 };
 
-const palette = {
+export const palette = {
   primary: { ...PRIMARY },
   secondary: { ...SECONDARY },
   success: { ...SUCCESS },
   warning: { ...WARNING },
 };
-
-export default palette;
