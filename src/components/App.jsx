@@ -1,11 +1,10 @@
 import React from 'react';
 import { RoutesComp } from './RoutesComp/RoutesComp';
-import { CustomBtn } from './Button/CustomBtn';
+import { CustomBtn } from './reusableComponents/Button/CustomBtn';
 
 export const App = () => {
   return (
     <>
-      <CustomBtn />
       <RoutesComp />
     </>
   );

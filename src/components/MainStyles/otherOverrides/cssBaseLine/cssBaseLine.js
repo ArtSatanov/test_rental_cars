@@ -62,6 +62,7 @@ export const CssBaseline = theme => {
           height: '100%',
           //  backgroundColor: theme?.palette.background.default,
           backgroundAttachment: 'fixed',
+          fontFamily: 'Manrope',
         },
         '#root': {
           width: '100%',
