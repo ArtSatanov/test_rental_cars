@@ -7,13 +7,13 @@ import {
   CardMedia,
   Typography,
 } from '@mui/material';
-import Modal from 'react-modal';
 import NoImg from '../../../images/no-image.jpg';
 import { CustomBtn } from '../Button/CustomBtn';
 import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { ModalRent } from 'components/ModalRent/ModalRent';
+import Modal from '@mui/material/Modal';
 
 const modalStyle = {
   overlay: {
@@ -31,7 +31,6 @@ const modalStyle = {
     maxWidth: '541px',
   },
 };
-Modal.setAppElement('#root');
 
 export const ProductCard = ({ car }) => {
   const [zIndex, setZIndex] = useState(-1);
@@ -183,11 +182,12 @@ export const ProductCard = ({ car }) => {
           Learn More
         </CustomBtn>
         <Modal
-          isOpen={isModalOpen}
-          onRequestClose={toggleModal}
-          style={modalStyle}
+          open={isModalOpen}
+          onClose={toggleModal}
+          aria-labelledby={car.id}
+          aria-describedby={car.make}
         >
-          <ModalRent car={car} onClose={toggleModal} />
+          <ModalRent car={car} style={modalStyle} />
         </Modal>
       </Card>
     </>
