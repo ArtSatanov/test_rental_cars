@@ -1,41 +1,89 @@
-import React from 'react';
-import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
-
+import React, { useState } from 'react';
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@mui/material';
+import Modal from 'react-modal';
 import NoImg from '../../../images/no-image.jpg';
 import { CustomBtn } from '../Button/CustomBtn';
+import IconButton from '@mui/material/IconButton';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import { ModalRent } from 'components/ModalRent/ModalRent';
 
-export const ProductCard = ({
-  year = '2006',
-  make = 'HUMMER',
-  model = 'model',
-  type = 'type',
-  id = '99',
-  img,
-  description,
-  fuelConsumption,
-  engineSize = '3232',
-  accessories,
-  functionalities,
-  rentalPrice = '$55',
-  rentalCompany = 'Adventure Car Rentals',
-  address = '321 Example Road, Kharkiv, Ukraine',
-  rentalConditions,
-  mileage,
-}) => {
+const modalStyle = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+  },
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    padding: '40px',
+    borderRadius: '24px',
+    maxWidth: '541px',
+  },
+};
+Modal.setAppElement('#root');
+
+export const ProductCard = ({ car }) => {
+  const [zIndex, setZIndex] = useState(-1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleLike = () => {
+    zIndex === 1 ? setZIndex(-1) : setZIndex(1);
+  };
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
     <>
       <Card
         sx={{
+          position: 'relative',
           maxWidth: '274px',
           maxHeight: '426px',
           margin: 'auto',
           boxShadow: 'none',
         }}
       >
+        <CardActions
+          disableSpacing
+          sx={{
+            position: 'absolute',
+            top: '16.25px',
+            right: '15.16px',
+          }}
+        >
+          <IconButton aria-label="add to favorites" onClick={handleLike}>
+            <FavoriteIcon
+              sx={{
+                color: 'primary.button',
+                position: 'absolute',
+                zIndex: zIndex,
+              }}
+            />
+            <FavoriteBorderOutlinedIcon
+              sx={{
+                position: 'absolute',
+                fill: 'white',
+              }}
+            />
+          </IconButton>
+        </CardActions>
         <CardMedia
           component="img"
-          image={img ?? NoImg}
-          alt={make}
+          image={car.img ?? NoImg}
+          alt={car.make}
           sx={{
             width: '100%',
             height: '268px',
@@ -61,13 +109,13 @@ export const ProductCard = ({
             }}
           >
             <Box component="span">
-              {make}
+              {car.make}
               <Box component="span" sx={{ color: 'primary.button' }}>
-                {` ${model}, `}
+                {` ${car.model}, `}
               </Box>
-              {year}
+              {car.year}
             </Box>
-            <Box component="span">{rentalPrice}</Box>
+            <Box component="span">{car.rentalPrice}</Box>
           </Typography>
           <Typography
             variant="desc1"
@@ -86,9 +134,9 @@ export const ProductCard = ({
                 paddingLeft: '0',
               }}
             >
-              {address.split(',')[1]}
+              {car.address.split(',')[1]}
             </Box>
-            <Box component="span">{address.split(',')[2]}</Box>
+            <Box component="span">{car.address.split(',')[2]}</Box>
             <Box
               component="span"
               sx={{
@@ -96,7 +144,7 @@ export const ProductCard = ({
                 paddingLeft: '6px',
               }}
             >
-              {rentalCompany}
+              {car.rentalCompany}
             </Box>
           </Typography>
           <Typography
@@ -116,10 +164,10 @@ export const ProductCard = ({
                 paddingLeft: '0',
               }}
             >
-              {type}
+              {car.type}
             </Box>
-            <Box component="span">{make}</Box>
-            <Box component="span">{id}</Box>
+            <Box component="span">{car.make}</Box>
+            <Box component="span">{car.id}</Box>
             <Box
               component="span"
               sx={{
@@ -127,11 +175,20 @@ export const ProductCard = ({
                 paddingLeft: '6px',
               }}
             >
-              {engineSize}
+              {car.engineSize}
             </Box>
           </Typography>
         </CardContent>
-        <CustomBtn variant="learnMore">Learn More</CustomBtn>
+        <CustomBtn variant="learnMore" onClick={toggleModal}>
+          Learn More
+        </CustomBtn>
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={toggleModal}
+          style={modalStyle}
+        >
+          <ModalRent car={car} onClose={toggleModal} />
+        </Modal>
       </Card>
     </>
   );
